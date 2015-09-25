@@ -1,0 +1,14 @@
+{
+  "name": "spam-url",
+  "version": "0.1.1",
+  "description": "A fake client for sideboard.",
+  "main": "spam-url.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ramanpreet Nara",
+  "dependencies": {
+    "chai": "^3.3.0",
+    "commander": "^2.8.1"
+  }
+}
