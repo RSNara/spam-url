@@ -1,13 +1,13 @@
 {
   "name": "spam-url",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "A fake client for sideboard.",
-  "main":"index.js",
+  "main":"spam-url.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin":{
-    "spam-url": "./index.js"
+    "spam-url": "./bin/index.js"
   },
   "author": "Ramanpreet Nara",
   "dependencies": {
