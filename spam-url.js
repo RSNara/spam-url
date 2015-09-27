@@ -99,7 +99,11 @@ function sendRequestsTo(HOST, METHOD, PORT, PATH, INTERVAL, OUTPUT) {
       
       function handle(response) {
         loadDataFrom(response)
-          .then((data) => {
+          .then((body) => {
+            /*
+             *  Take the body and construct a log object to write to 
+             *  output stream.
+             */
 
             var log = {
               id: counter++,
@@ -109,7 +113,7 @@ function sendRequestsTo(HOST, METHOD, PORT, PATH, INTERVAL, OUTPUT) {
                 options: options
               },
               response: {
-                body: data,
+                body: body,
                 headers: response.headers,
               }
             };
