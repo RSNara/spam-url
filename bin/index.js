@@ -6,7 +6,7 @@ var spamUrl = require('../spam-url');
 var HTTP_METHODS = /^(GET|POST|HEAD|PUT|DELETE)$/i;
 
 program
-  .version('0.2.0')
+  .version('0.2.3')
   .option('-u --url <u>', 'Request URL')
   .option('-m --method <m>', 'HTTP method', HTTP_METHODS, 'GET')
   .option('-i --interval <i>', 'Request Interval', parseInt)
