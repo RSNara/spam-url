@@ -1,16 +1,17 @@
 {
   "name": "spam-url",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A fake client for sideboard.",
-  "main":"spam-url.js",
+  "main": "spam-url.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin":{
+  "bin": {
     "spam-url": "./bin/index.js"
   },
   "author": "Ramanpreet Nara",
   "dependencies": {
+    "bluebird": "^2.10.1",
     "chai": "^3.3.0",
     "commander": "^2.8.1"
   }
