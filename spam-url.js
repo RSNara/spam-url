@@ -93,8 +93,8 @@ function sendRequestsTo(HOST, METHOD, PORT, PATH, INTERVAL, OUTPUT) {
       var $request = http.request(options);
 
       $request.on('response', handle);
-      $request.write(serialized);
       $request.on('error', reject);
+      $request.write(serialized);
       $request.end();
       
       function handle(response) {
