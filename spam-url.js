@@ -2,7 +2,6 @@ var http = require('http');
 var url = require('url');
 var expect = require('chai').expect;
 var fs = require('fs');
-var Console = require('console');
 var Promise = require('bluebird');
 
 var parseJSON = JSON.parse.bind(JSON);

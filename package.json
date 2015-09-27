@@ -1,6 +1,6 @@
 {
   "name": "spam-url",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A fake client for sideboard.",
   "main": "spam-url.js",
   "scripts": {
