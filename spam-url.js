@@ -53,7 +53,7 @@ function loadDataFrom(stream) {
     var input = stream;
     var data = '';
     input.setEncoding('utf8');
-    input.on('data', _data => data += _data);
+    input.on('data', function(_data) { data += _data; });
     input.on('error', reject);
     input.on('end', function(){
       fullfill(data);
@@ -72,11 +72,11 @@ function sendRequestsTo(HOST, METHOD, PORT, PATH, INTERVAL, OUTPUT) {
   var time = Date.now();
 
   return function sendRequest(objects) {
-    if (! objects.length) {
-      return Promise.resolve();
-    }
-
     return new Promise(function(fullfill, reject) {
+      if (! objects.length) {
+        return fullfill(objects);
+      }
+
       var serialized = JSON.stringify(objects[0]);
       
       var options = {
@@ -125,15 +125,21 @@ function sendRequestsTo(HOST, METHOD, PORT, PATH, INTERVAL, OUTPUT) {
 
           })
           .catch(reject)
-          .then(function(){
-            // recurse
+          .then(function (){
+
+            // recurse, slightly redundantly
             var rest = objects.slice(1, objects.length);
-            setTimeout(fullfill, INTERVAL, rest);
+            setTimeout(fullfill, rest.length ? INTERVAL : 0, rest);
+
           });
       }
 
     })
-    .then(sendRequest);
+    .then(function(rest) {
+      if (rest.length) {
+        return sendRequest(rest);
+      }
+    })
 
   };
 

@@ -31,5 +31,7 @@ if (! options.url) {
 }
 
 spamUrl(options)
-  .catch(error => console.error(error));
+  .catch(function(error) {
+    console.error(error)
+  });
 
