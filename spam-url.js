@@ -8,18 +8,25 @@ var parseJSON = JSON.parse.bind(JSON);
 
 module.exports = function main(options) {
 
+  // rejected options
+  expect(options.host).to.not.be.ok;
+
   if (options.url) {
+    expect(options.url).to.match(/http(|s):\/\//);
     expect(options.port).to.not.be.ok;
     expect(options.path).to.not.be.ok;
-    expect(options.host).to.not.be.ok;
+    expect(options.hostname).to.not.be.ok;
+    expect(options.protocol).to.not.be.ok;
     var URL = url.parse(options.url);
+    options.protocol = URL.protocol;
+    options.hostname = URL.hostname;
     options.port = URL.port;
     options.path = URL.path;
-    options.host = URL.host;
   }
 
-  expect(options.host).to.be.ok;
   expect(options.method).to.be.ok;
+  expect(options.protocol).to.be.ok;
+  expect(options.hostname).to.be.ok;
   expect(options.path).to.be.ok;
   expect(options.interval).to.be.ok;
   expect(options.input).to.be.ok;
@@ -27,7 +34,7 @@ module.exports = function main(options) {
   expect(options.output).to.be.ok;
   expect(options.output.file || options.output.stream).to.be.ok;
 
-  var outputStream = options.output.file 
+  var outputStream = options.output.file
     ? fs.createWriteStream(options.output.file)
     : options.output.stream;
 
@@ -39,10 +46,11 @@ module.exports = function main(options) {
     .then(parseJSON)
     .then(checkIfArray)
     .then(sendRequestsTo(
-      options.host, 
-      options.method, 
-      options.port, 
-      options.path, 
+      options.method,
+      options.protocol,
+      options.hostname,
+      options.port,
+      options.path,
       options.interval,
       outputStream
     ));
@@ -66,7 +74,9 @@ function checkIfArray(objects) {
   return objects;
 }
 
-function sendRequestsTo(HOST, METHOD, PORT, PATH, INTERVAL, OUTPUT) {
+function sendRequestsTo(
+  METHOD, PROTOCOL, HOSTNAME, PORT, PATH, INTERVAL, OUTPUT
+) {
 
   var counter = 0;
   var time = Date.now();
@@ -78,9 +88,10 @@ function sendRequestsTo(HOST, METHOD, PORT, PATH, INTERVAL, OUTPUT) {
       }
 
       var serialized = JSON.stringify(objects[0]);
-      
+
       var options = {
-        host: HOST,
+        protocol: PROTOCOL,
+        host: HOSTNAME,
         method: METHOD,
         port: PORT,
         path: PATH,
@@ -96,12 +107,12 @@ function sendRequestsTo(HOST, METHOD, PORT, PATH, INTERVAL, OUTPUT) {
       $request.on('error', reject);
       $request.write(serialized);
       $request.end();
-      
+
       function handle(response) {
         loadDataFrom(response)
           .then((body) => {
             /*
-             *  Take the body and construct a log object to write to 
+             *  Take the body and construct a log object to write to
              *  output stream.
              */
 
@@ -121,7 +132,7 @@ function sendRequestsTo(HOST, METHOD, PORT, PATH, INTERVAL, OUTPUT) {
             // write request body
             log.request.body = serialized;
 
-            // update time 
+            // update time
             time = log.timeTaken + time;
 
             // save log
@@ -143,8 +154,7 @@ function sendRequestsTo(HOST, METHOD, PORT, PATH, INTERVAL, OUTPUT) {
       if (rest.length) {
         return sendRequest(rest);
       }
-    })
-
+    });
   };
 
 }
