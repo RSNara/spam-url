@@ -8,7 +8,7 @@ Sends each object in a provided JSON array to the location specified by the URL.
 npm install -g spam-url
 ```
 
-## Usage:
+## Usage
 
 ```bash
 
