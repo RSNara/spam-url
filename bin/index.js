@@ -9,7 +9,7 @@ program
   .version('0.2.3')
   .option('-u --url <u>', 'request URL to spam')
   .option('-m --method <m>', 'HTTP method (default: POST)', HTTP_METHODS, 'POST')
-  .option('-i --interval <i>', 'request interval (default: 1000 ms)', parseInt)
+  .option('-i --interval <i>', 'request interval in ms (default: 1000)', parseInt)
   .option('-f --file <f>', 'request body (containing JSON array)')
   .parse(process.argv);
 
