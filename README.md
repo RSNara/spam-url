@@ -2,6 +2,12 @@
 
 Sends each object in a given JSON array to the location specified by the URL. By default, the script reads from standard input. You can also specify the file-path, if you like.
 
+## Installation
+
+```bash
+npm install -g spam-url
+```
+
 ## Help:
 
 ```bash
