@@ -6,7 +6,7 @@ var spamUrl = require('../spam-url');
 var HTTP_METHODS = /^(GET|POST|HEAD|PUT|DELETE)$/i;
 
 program
-  .version('0.2.3')
+  .version(require('../package.json').version)
   .option('-u --url <u>', 'request URL to spam')
   .option('-m --method <m>', 'HTTP method (default: POST)', HTTP_METHODS, 'POST')
   .option('-i --interval <i>', 'request interval in ms (default: 1000)', parseInt)
