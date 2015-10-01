@@ -1,6 +1,6 @@
 # Spam-url
 
-Sends each object in a provided JSON array to the location specified by the URL. By default, the script reads from standard input. You can also specify the file-path, if you like.
+Sends each object in a provided JSON array to the location specified by the URL. By default, the script reads from standard input. You can alternatively specify the file-path, if you like.
 
 ## Installation
 
