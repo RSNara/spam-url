@@ -10,7 +10,7 @@ program
   .option('-u --url <u>', 'request URL to spam')
   .option('-m --method <m>', 'HTTP method (default: POST)', HTTP_METHODS, 'POST')
   .option('-i --interval <i>', 'request interval in ms (default: 1000)', parseInt)
-  .option('-f --file <f>', 'request body (containing JSON array)')
+  .option('-f --file <f>', 'an array of JSON request bodies')
   .parse(process.argv);
 
 var options = {
