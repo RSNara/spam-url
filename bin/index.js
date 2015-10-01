@@ -7,10 +7,10 @@ var HTTP_METHODS = /^(GET|POST|HEAD|PUT|DELETE)$/i;
 
 program
   .version('0.2.3')
-  .option('-u --url <u>', 'Request URL')
+  .option('-u --url <u>', 'Request URL to spam')
   .option('-m --method <m>', 'HTTP method', HTTP_METHODS, 'GET')
-  .option('-i --interval <i>', 'Request Interval', parseInt)
-  .option('-f --file <f>', 'Request Body (JSON format)')
+  .option('-i --interval <i>', 'Request Interval (ms)', parseInt)
+  .option('-f --file <f>', 'Request Body (containing JSON array)')
   .parse(process.argv);
 
 var options = {
