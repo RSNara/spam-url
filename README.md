@@ -21,6 +21,6 @@ npm install -g spam-url
     -u --url <u>       request URL to spam
     -m --method <m>    HTTP method (default: POST)
     -i --interval <i>  request interval in ms (default: 1000)
-    -f --file <f>      request body (containing JSON array)
+    -f --file <f>      an array of JSON request bodies
 
 ```
