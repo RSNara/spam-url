@@ -19,8 +19,8 @@ npm install -g spam-url
     -h, --help         output usage information
     -V, --version      output the version number
     -u --url <u>       request URL to spam
-    -m --method <m>    HTTP method
-    -i --interval <i>  request interval (in ms)
+    -m --method <m>    HTTP method (default: POST)
+    -i --interval <i>  request interval (default: 1000 ms)
     -f --file <f>      request body (containing JSON array)
 
 ```
