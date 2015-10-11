@@ -121,11 +121,12 @@ function sendRequestsTo(
               timeTaken: Date.now() - time,
               request: {
                 body: serialized,
-                options: options
+                options: options,
               },
               response: {
                 body: body,
                 headers: response.headers,
+                status: response.statusCode,
               }
             };
 
